@@ -15,12 +15,11 @@ hosted_zone_name = "tf-support.hashicorpdemo.com"
 record_name    = "ks-rep-mdtest"
 
 # Tags
-/*tags = {
+tags = {
   project     = "aws-tf1"
   environment = "dev1"
   owner       = "kunal1"
 }
-*/
 
 # DB
 db_identifier_name   = "kunals-postgres-db"
