@@ -8,7 +8,7 @@ output "private_ip" {
   value       = aws_instance.web.private_ip
 }
 
-output "dns_name" {
+output "fqdn" {
   description = "Fully qualified domain name mapped to the EC2 public IP"
   value       = aws_route53_record.a_record.fqdn
 }
@@ -21,14 +21,4 @@ output "s3_bucket_name" {
 output "rds_endpoint" {
   description = "RDS Postgres endpoint"
   value       = aws_db_instance.postgres.address
-}
-
-output "rds_port" {
-  description = "RDS Postgres port"
-  value       = aws_db_instance.postgres.port
-}
-
-output "rds_identifier" {
-  description = "RDS identifier"
-  value       = aws_db_instance.postgres.id
 }
