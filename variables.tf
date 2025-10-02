@@ -21,6 +21,11 @@ variable "instance_type" {
   type = string
 }
 
+variable "ec2_name" {
+  type    = string
+  default = "tf-ec2"
+}
+
 variable "disk_size_gb" {
   type = number
 }
@@ -62,8 +67,12 @@ variable "db_engine_version" {
   type = string
 }
 
-variable "s3_bucket_prefix" {
-  description = "Prefix for S3 bucket name, environment will be appended"
+variable "db_identifier_name" {
+  type = string
+}
+
+variable "s3_bucket_name" {
+  description = "Name for S3 bucket name, environment will be appended"
   type        = string
 }
 
@@ -72,7 +81,12 @@ variable "iam_role_name" {
   type        = string
 }
 
-variable "iam_instance_profile_prefix" {
-  description = "Prefix for IAM instance profile name, environment will be appended"
+variable "iam_instance_profile_name" {
+  description = "Name for IAM instance profile name, environment will be appended"
   type        = string
+}
+
+variable "record_name" {
+  type    = string
+  default = "tfe"
 }
