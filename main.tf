@@ -8,12 +8,12 @@ locals {
   web_sg_name           = "tf-web-sg-${local.env}"
   db_sg_name            = "tf-db-sg-${local.env}"
   eip_name              = "tf-web-eip-${local.env}"
-  ec2_name              = "tfe-aws-docker-${local.env}"
-  db_identifier         = "kunals-postgres-db-${local.env}"
+  ec2_name              = "${var.ec2_name}-${local.env}"
+  db_identifier         = "${var.db_identifier_name}-${local.env}"
   db_subnet_group_name  = "tfe-db-subnet-group-${local.env}"
-  s3_bucket_name        = "${var.s3_bucket_prefix}-${local.env}"
-  iam_instance_profile  = "${var.iam_instance_profile_prefix}-${local.env}"
-  record_name           = "ks-docker-es-ci-${local.env}"
+  s3_bucket_name        = "${var.s3_bucket_name}-${local.env}"
+  iam_instance_profile  = "${var.iam_instance_profile_name}-${local.env}"
+  record_name           = "${var.record_name}-${local.env}"
 }
 
 # Fetch available AZs
