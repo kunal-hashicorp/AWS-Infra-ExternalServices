@@ -17,8 +17,8 @@ record_name    = "ks-rep-mdtest"
 # Tags
 tags = {
   project     = "aws-tf1"
-  environment = "dev1"
-  owner       = "kunal1"
+  environment = "testci"
+  owner       = "kunal"
 }
 
 # DB
@@ -36,4 +36,4 @@ s3_bucket_name = "ks-fdo"
 
 # IAM
 iam_role_name               = "s3-fullaccess-kunal"
-iam_instance_profile_name = "s3-fullaccess-ks-instance-profile"
+iam_instance_profile_name   = "s3-fullaccess-ks-instance-profile"
