@@ -12,7 +12,7 @@ ec2_name    = "kunal-tfe-ec2"
 
 # Hosted zone
 hosted_zone_name = "tf-support.hashicorpdemo.com"
-record_name    = "ks-rep-mdtest"
+record_name    = "ks-doc-es"
 
 # Tags
 tags = {
@@ -26,13 +26,13 @@ db_identifier_name   = "kunals-postgres-db"
 db_instance_class    = "db.t3.xlarge"
 db_allocated_storage = 20
 db_engine            = "postgres"
-db_engine_version    = "15.8"
+db_engine_version    = "15.14"
 db_username          = "postgres"
 db_password          = ""
 db_name              = "kunals"
 
 # S3
-s3_bucket_name = "ks-fdo"
+s3_bucket_name = "ks-fdo-test"
 
 # IAM
 iam_role_name               = "s3-fullaccess-kunal"
