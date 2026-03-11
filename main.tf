@@ -21,28 +21,13 @@ data "aws_availability_zones" "available" {
   state = "available"
 }
 
-# Latest Ubuntu AMI
-data "aws_ami" "ubuntu" {
-  most_recent = true
-  owners      = ["099720109477"]
-
-  filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-}
-
 # VPC
 resource "aws_vpc" "main" {
   cidr_block           = var.vpc_cidr
   enable_dns_hostnames = true
   enable_dns_support   = true
-  tags                 = merge(var.tags, { Name = local.vpc_name })
+
+  tags = merge(var.tags, { Name = local.vpc_name })
 }
 
 # Internet Gateway
@@ -166,7 +151,7 @@ resource "aws_iam_instance_profile" "web_profile" {
 
 # Web EC2 instance
 resource "aws_instance" "web" {
-  ami                         = data.aws_ami.ubuntu.id
+  ami                         = "ami-062fdacc7ff0c9959"
   instance_type               = var.instance_type
   subnet_id                   = aws_subnet.public[0].id
   vpc_security_group_ids      = [aws_security_group.web_sg.id]
@@ -211,21 +196,22 @@ resource "aws_db_subnet_group" "db_subnets" {
 }
 
 resource "aws_db_instance" "postgres" {
-  identifier              = local.db_identifier
-  engine                  = var.db_engine
-  engine_version          = var.db_engine_version
-  allocated_storage       = var.db_allocated_storage
-  instance_class          = var.db_instance_class
-  db_name                 = var.db_name
-  username                = var.db_username
-  password                = var.db_password
-  db_subnet_group_name    = aws_db_subnet_group.db_subnets.name
-  vpc_security_group_ids  = [aws_security_group.db_sg.id]
-  skip_final_snapshot     = true
-  publicly_accessible     = false
-  multi_az                = false
-  storage_encrypted       = true
-  apply_immediately       = true
+  identifier             = local.db_identifier
+  engine                 = var.db_engine
+  engine_version         = var.db_engine_version
+  allocated_storage      = var.db_allocated_storage
+  instance_class         = var.db_instance_class
+  db_name                = var.db_name
+  username               = var.db_username
+  password               = var.db_password
+  db_subnet_group_name   = aws_db_subnet_group.db_subnets.name
+  vpc_security_group_ids = [aws_security_group.db_sg.id]
+
+  skip_final_snapshot = true
+  publicly_accessible = false
+  multi_az            = false
+  storage_encrypted   = true
+  apply_immediately   = true
 
   tags = merge(var.tags, { Name = local.db_identifier })
 }
